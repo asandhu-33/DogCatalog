@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <h1>🏠 <%= @shelter.name %></h1>
+  <p class="text-muted">Located in <%= @shelter.city %> | Contact: <%= @shelter.contact_email %></p>
+  
+  <h3 class="mt-4">Dogs available from this rescue:</h3>
+  <div class="row">
+    <% @shelter.breeds.each do |breed| %>
+      <div class="col-md-3 mb-3">
+        <div class="card h-100">
+          <img src="<%= breed.image_url %>" class="card-img-top" style="height: 150px; object-fit: cover;" alt="<%= breed.name %>">
+          <div class="card-body">
+            <h6 class="card-title"><%= link_to breed.name, breed_path(breed) %></h6>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <%= link_to '← Back to All Breeds', breeds_path, class: 'btn btn-secondary' %>
+</div>
