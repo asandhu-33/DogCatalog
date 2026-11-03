@@ -1,2 +1,28 @@
-<h1>About#index</h1>
-<p>Find me in app/views/about/index.html.erb</p>
+<div class="container mt-4">
+  <h1 class="mb-4">About This Application</h1>
+  
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h3 class="card-title">Data Sources</h3>
+      <p>This Ruby on Rails application uses data collected from two separate data sources:</p>
+      <ul>
+        <li><strong>Dog CEO API:</strong> Used to fetch real dog breed names and dynamic image URLs from public endpoints.</li>
+        <li><strong>Faker Gem:</strong> Used to generate animal rescue shelter profiles (names, locations, and contact emails) and supplementary dataset entries.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h3 class="card-title">Database Structure & Relationship</h3>
+      <p>The application is built around a one-to-many relationship between <strong>Shelter</strong> and <strong>Breed</strong> models:</p>
+      <ul>
+        <li>A <code>Shelter</code> has many <code>Breeds</code>.</li>
+        <li>A <code>Breed</code> belongs to a <code>Shelter</code> via a foreign key (<code>shelter_id</code>).</li>
+      </ul>
+      <p>The database seeds generate over 200 total records to satisfy project data requirements.</p>
+    </div>
+  </div>
+
+  <%= link_to '← Back to Home', root_path, class: 'btn btn-primary' %>
+</div>
