@@ -16,7 +16,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_11_03_131848) do
 
   create_table "breeds", force: :cascade do |t|
     t.string "name"
-    t.string "bred_for"
     t.string "life_span"
     t.string "image_url"
     t.bigint "shelter_id", null: false
@@ -28,7 +27,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_11_03_131848) do
   create_table "shelters", force: :cascade do |t|
     t.string "name"
     t.string "city"
-    t.string "contact_email"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

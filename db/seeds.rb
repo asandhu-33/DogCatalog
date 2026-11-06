@@ -11,7 +11,7 @@ shelters = []
   shelters << Shelter.create!(
     name: Faker::Company.name + " Animal Rescue",
     city: "Winnipeg",
-    contact_email: Faker::Internet.email
+    email: Faker::Internet.email
   )
 end
 
@@ -34,7 +34,6 @@ breed_list.each do |breed_name, sub_breeds|
 
   Breed.create!(
     name: breed_name.capitalize,
-    bred_for: "Companion / Working",
     life_span: "10 - 15 years",
     image_url: img_url,
     shelter: shelters.sample
@@ -45,7 +44,6 @@ end
 (200 - count).times do
   Breed.create!(
     name: Faker::Creature::Dog.breed,
-    bred_for: Faker::Creature::Dog.meme_phrase,
     life_span: "12 years",
     image_url: "https://images.dog.ceo/breeds/retriever-golden/n02099601_3000.jpg",
     shelter: shelters.sample

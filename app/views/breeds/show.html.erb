@@ -5,7 +5,6 @@
     </div>
     <div class="col-md-6">
       <h1><%= @breed.name %></h1>
-      <p class="lead"><strong>Bred For:</strong> <%= @breed.bred_for %></p>
       <p><strong>Life Span:</strong> <%= @breed.life_span %></p>
       
       <hr>
@@ -14,7 +13,7 @@
       <div class="card p-3 bg-light mb-3">
         <p class="mb-1"><strong>Name:</strong> <%= link_to @breed.shelter.name, shelter_path(@breed.shelter) %></p>
         <p class="mb-1"><strong>City:</strong> <%= @breed.shelter.city %></p>
-        <p class="mb-0"><strong>Contact Email:</strong> <%= @breed.shelter.contact_email %></p>
+        <p class="mb-0"><strong>Email:</strong> <%= @breed.shelter.email %></p>
       </div>
 
       <%= link_to '← Back to All Breeds', breeds_path, class: 'btn btn-secondary' %>
