@@ -1,20 +1,44 @@
 <div class="container mt-4">
   <h1 class="mb-4">Dog Breed Catalog</h1>
 
+  <!-- Search & Filter Form -->
+  <div class="card p-3 mb-4 bg-light shadow-sm">
+    <%= form_with url: breeds_path, method: :get, local: true, class: "row g-3 align-items-center" do |f| %>
+      <div class="col-md-5">
+        <%= f.text_field :search, value: params[:search], placeholder: "Search breed name...", class: "form-control" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.select :shelter_id, options_from_collection_for_select(Shelter.all, :id, :name, params[:shelter_id]), { include_blank: "All Shelters" }, class: "form-select" %>
+      </div>
+      <div class="col-md-3 d-flex gap-2">
+        <%= f.submit "Search", class: "btn btn-primary w-100" %>
+        <%= link_to "Reset", breeds_path, class: "btn btn-outline-secondary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Breed Grid -->
   <div class="row">
-    <% @breeds.each do |breed| %>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          <img src="<%= breed.image_url %>" class="card-img-top" alt="<%= breed.name %>" style="height: 220px; object-fit: cover;">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title"><%= breed.name %></h5>
-            <p class="card-text text-muted mb-1"><strong>Life Span:</strong> <%= breed.life_span %></p>
-            <p class="card-text"><small class="text-secondary"><strong>Shelter:</strong> <%= breed.shelter.name %></small></p>
-            <div class="mt-auto">
-              <%= link_to 'View Details', breed_path(breed), class: 'btn btn-primary btn-sm w-100' %>
+    <% if @breeds.any? %>
+      <% @breeds.each do |breed| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <img src="<%= breed.image_url %>" class="card-img-top" alt="<%= breed.name %>" style="height: 220px; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= breed.name %></h5>
+              <p class="card-text text-muted mb-1"><strong>Life Span:</strong> <%= breed.life_span %></p>
+              <p class="card-text"><small class="text-secondary"><strong>Shelter:</strong> <%= breed.shelter.name %></small></p>
+              <div class="mt-auto">
+                <%= link_to 'View Details', breed_path(breed), class: 'btn btn-primary btn-sm w-100' %>
+              </div>
             </div>
           </div>
         </div>
+      <% end %>
+    <% else %>
+      <div class="col-12 text-center my-5">
+        <h4>No breeds found matching your search criteria.</h4>
+        <%= link_to "View All Breeds", breeds_path, class: "btn btn-outline-primary mt-2" %>
       </div>
     <% end %>
   </div>
