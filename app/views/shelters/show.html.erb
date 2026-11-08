@@ -1,20 +1,31 @@
 <div class="container mt-4">
-  <h1><%= @shelter.name %></h1>
-  <p class="text-muted">Located in <%= @shelter.city %> | Email: <%= @shelter.email %></p>
+  <div class="mb-4">
+    <h1><%= @shelter.name %></h1>
+    <p class="text-muted mb-1"><strong>Location:</strong> <%= @shelter.city %></p>
+    <p class="text-muted"><strong>Contact Email:</strong> <%= @shelter.email %></p>
+    <%= link_to "Back to All Shelters", shelters_path, class: "btn btn-outline-secondary btn-sm mt-2" %>
+  </div>
+
+  <h3 class="mb-3">Breeds housed at this shelter:</h3>
   
-  <h3 class="mt-4">Dogs available from this rescue:</h3>
   <div class="row">
-    <% @shelter.breeds.each do |breed| %>
-      <div class="col-md-3 mb-3">
-        <div class="card h-100">
-          <img src="<%= breed.image_url %>" class="card-img-top" style="height: 150px; object-fit: cover;" alt="<%= breed.name %>">
-          <div class="card-body">
-            <h6 class="card-title"><%= link_to breed.name, breed_path(breed) %></h6>
+    <% @breeds.each do |breed| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img src="<%= breed.image_url %>" class="card-img-top" alt="<%= breed.name %>" style="height: 220px; object-fit: cover;">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title"><%= breed.name %></h5>
+            <p class="card-text text-muted mb-1"><strong>Life Span:</strong> <%= breed.life_span %></p>
+            <div class="mt-auto">
+              <%= link_to 'View Details', breed_path(breed), class: 'btn btn-primary btn-sm w-100' %>
+            </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-  <br>
-  <%= link_to '← Back to All Breeds', breeds_path, class: 'btn btn-secondary' %>
+
+  <div class="d-flex justify-content-center my-4">
+    <%= paginate @breeds %>
+  </div>
 </div>
