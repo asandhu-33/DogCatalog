@@ -12,9 +12,17 @@
   <p>The application is built around a one-to-many relationship between <strong>Shelter</strong> and <strong>Breed</strong> models:</p>
   <ul>
     <li>A <strong>Shelter</strong> has many <strong>Breeds</strong>.</li>
-    <li>A <strong>Breed</strong> belongs to a <strong>Shelter</strong> via a foreign key (shelter_id).</li>
+    <li>A <strong>Breed</strong> belongs to a <strong>Shelter</strong> via a foreign key (<strong>shelter_id</strong>).</li>
   </ul>
   <p>The database seeds generate over 200 total records to satisfy project data requirements.</p>
+
+  <!-- ERD Image Section -->
+  <div class="my-4">
+    <h4 class="mb-3">Entity Relationship Diagram (ERD)</h4>
+    <div class="text-center">
+      <%= image_tag "DogCatalog.drawio.png", alt: "Database ERD", class: "img-fluid border rounded shadow-sm", style: "max-width: 700px;" %>
+    </div>
+  </div>
 
   <div class="mt-4">
     <%= link_to '← Back to Home', root_path, class: 'btn btn-outline-secondary' %>
