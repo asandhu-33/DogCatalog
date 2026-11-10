@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'json'
 
-# Clear existing data to avoid duplicates
+# Clear existing data to avoid duplication
 Breed.destroy_all
 Shelter.destroy_all
 
