@@ -5,6 +5,7 @@ require 'json'
 Breed.destroy_all
 Shelter.destroy_all
 
+# Created 10 resuce shelter records using Faker gem
 puts "Creating shelters with Faker..."
 shelters = []
 10.times do
@@ -15,6 +16,7 @@ shelters = []
   )
 end
 
+# Fetch dog breed names and dynamic images from the Dog CEO API
 puts "Fetching dog breeds and images from Dog CEO API..."
 url = 'https://dog.ceo/api/breeds/list/all'
 buffer = URI.open(url).read
@@ -32,6 +34,7 @@ breed_list.each do |breed_name, sub_breeds|
    
   end
 
+# Create the breed record and assign it randomly to one of the shelters
   Breed.create!(
     name: breed_name.capitalize,
     life_span: "10 - 15 years",
@@ -41,6 +44,7 @@ breed_list.each do |breed_name, sub_breeds|
   count += 1
 end
 
+# Ensure total breed records meet or exceed 200 items using Faker
 (200 - count).times do
   Breed.create!(
     name: Faker::Creature::Dog.breed,
