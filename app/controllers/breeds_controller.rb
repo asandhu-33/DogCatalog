@@ -18,6 +18,7 @@ class BreedsController < ApplicationController
   end
 
   def show
+    # Display specific breed
     @breed = Breed.find(params[:id])
   end
 end
