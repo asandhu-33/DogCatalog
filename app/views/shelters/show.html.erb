@@ -1,31 +1,43 @@
 <div class="container mt-4">
-  <div class="mb-4">
-    <h1><%= @shelter.name %></h1>
-    <p class="text-muted mb-1"><strong>Location:</strong> <%= @shelter.city %></p>
-    <p class="text-muted"><strong>Contact Email:</strong> <%= @shelter.email %></p>
-    <%= link_to "Back to All Shelters", shelters_path, class: "btn btn-outline-secondary btn-sm mt-2" %>
-  </div>
+  <!-- Shelter Details -->
+  <h1 class="mb-3"><%= @shelter.name %></h1>
+  <p class="text-muted mb-1"><strong>City:</strong> <%= @shelter.city %></p>
+  <p class="text-muted mb-3"><strong>Email:</strong> <%= @shelter.email %></p>
 
-  <h3 class="mb-3">Breeds housed at this shelter:</h3>
-  
-  <div class="row">
-    <% @breeds.each do |breed| %>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          <img src="<%= breed.image_url %>" class="card-img-top" alt="<%= breed.name %>" style="height: 220px; object-fit: cover;">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title"><%= breed.name %></h5>
-            <p class="card-text text-muted mb-1"><strong>Life Span:</strong> <%= breed.life_span %></p>
-            <div class="mt-auto">
-              <%= link_to 'View Details', breed_path(breed), class: 'btn btn-primary btn-sm w-100' %>
+  <hr class="my-4">
+
+  <!-- Hierarchical Breeds List (Feature 3.4) -->
+  <h3 class="mb-3">Breeds Housed at this Shelter</h3>
+
+  <% if @breeds.any? %>
+    <div class="row">
+      <% @breeds.each do |breed| %>
+        <div class="col-md-4 mb-3">
+          <div class="card h-100 shadow-sm">
+            <% if breed.image_url.present? %>
+              <img src="<%= breed.image_url %>" class="card-img-top" alt="<%= breed.name %>" style="height: 150px; object-fit: cover;">
+            <% end %>
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><%= breed.name %></h5>
+              <p class="card-text text-muted small">Life Span: <%= breed.life_span %></p>
+              <div class="mt-auto">
+                <%= link_to "View Breed Details", breed_path(breed), class: "btn btn-outline-primary btn-sm w-100" %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 
-  <div class="d-flex justify-content-center my-4">
-    <%= paginate @breeds %>
+    <!-- Pagination for the shelter's breeds -->
+    <div class="d-flex justify-content-center my-4">
+      <%= paginate @breeds %>
+    </div>
+  <% else %>
+    <p class="text-muted">No breeds currently listed for this shelter.</p>
+  <% end %>
+
+  <div class="mt-4">
+    <%= link_to '← Back to Shelters', shelters_path, class: 'btn btn-secondary' %>
   </div>
 </div>
