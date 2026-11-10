@@ -1,5 +1,6 @@
 class BreedsController < ApplicationController
   def index
+    # Loads associated shelter data to optimize queries and prevent N+1 performance issues
     @breeds = Breed.includes(:shelter)
 
     # Keyword search on breed name
